@@ -168,10 +168,10 @@ for i, imgFilename in enumerate(images):
     img = cv2.imread(imgFilename)
 
     # Convert the image to RGB for displaying with matplotlib
-    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    imgRgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     # Sepia Effect
-    sepiaImg = img_rgb.copy()
+    sepiaImg = imgRgb.copy()
     sepiaImg[:, :, 0] = 2 * sepiaImg[:, :, 2]  # R channel
     sepiaImg[:, :, 1] = 1.8 * sepiaImg[:, :, 2]  # G channel
     sepiaImg[:, :, 2] = sepiaImg[:, :, 2]  # B channel
@@ -181,7 +181,7 @@ for i, imgFilename in enumerate(images):
         "Sepia Effect",
     ]
 
-    sepiazedImg = [img_rgb, sepiaImg]
+    sepiazedImg = [imgRgb, sepiaImg]
 
     for j in range(len(titles)):
         axes[i, j].imshow(sepiazedImg[j])
