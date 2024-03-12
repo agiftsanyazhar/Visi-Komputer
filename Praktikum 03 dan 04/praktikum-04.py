@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 
 # Membaca data Image
 images = [
-    "Praktikum 03 dan 04/img/kucing.jpg", 
-    "Praktikum 03 dan 04/img/gradient.png", 
-    "Praktikum 03 dan 04/img/Penguins.jpg", 
-    "Praktikum 03 dan 04/img/arizona.jpg", 
-    "Praktikum 03 dan 04/img/Tulips.jpg", 
+    "Praktikum 03 dan 04/img/kucing.jpg",
+    "Praktikum 03 dan 04/img/gradient.png",
+    "Praktikum 03 dan 04/img/Penguins.jpg",
+    "Praktikum 03 dan 04/img/arizona.jpg",
+    "Praktikum 03 dan 04/img/Tulips.jpg",
     "Praktikum 03 dan 04/img/Koala.jpg",
 ]
 
@@ -30,10 +30,10 @@ for i, imgFilename in enumerate(images):
     height, width = img.shape[0], img.shape[1]
     newImg = np.zeros((height, width, 3), np.uint8)
 
-    #The quantification level is 2
+    # The quantification level is 2
     for x in range(height):
         for y in range(width):
-            for k in range(3): # Correspondence BGR Three channels
+            for k in range(3):  # Correspondence BGR Three channels
                 if img[x, y][k] < 128:
                     gray = 0
                 else:
@@ -42,14 +42,14 @@ for i, imgFilename in enumerate(images):
 
     titles = [
         "Original Image",
-        "New",
+        "Kuantisasi L2",
     ]
 
     quantizedImg = [img, newImg]
 
     for j in range(len(titles)):
         axes[i, j].imshow(cv2.cvtColor(quantizedImg[j], cv2.COLOR_BGR2RGB))
-        axes[i, j].set_title(f"Image {j + 1} ({titles[j]})")
+        axes[i, j].set_title(f"{titles[j]}")
         axes[i, j].axis("off")
 
 # Show the plot
@@ -58,33 +58,44 @@ plt.show()
 # ==============================
 # Kuantisasi Citra Gray Level 1, 2, 3 dan 4
 # ==============================
-fig, axes = plt.subplots(rows, 5, figsize=(15, 5 * rows))
+fig, axes = plt.subplots(rows, 6, figsize=(15, 5 * rows))
 
 for i, imgFilename in enumerate(images):
     # Membaca data Image
+    oriImg = cv2.imread(imgFilename)
+
+    # Display the original image
+    axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+    axes[i, 0].set_title("Original Image")
+    axes[i, 0].axis("off")
+
+    # Membaca data Image
     img = cv2.imread(imgFilename, 0)
 
-    imgGray = 128 * np.floor(img/128)
+    imgGray = 128 * np.floor(img / 128)
     gray1 = imgGray
-    imgGray = 64 * np.floor(img/64)
+    imgGray = 64 * np.floor(img / 64)
     gray2 = np.uint8(imgGray)
-    imgGray = 32 * np.floor(img/32)
+    imgGray = 32 * np.floor(img / 32)
     gray3 = np.uint8(imgGray)
-    imgGray = 16 * np.floor(img /16)
+    imgGray = 16 * np.floor(img / 16)
     gray4 = np.uint8(imgGray)
 
     # Show the image
     titles = [
-        u'(a) Original Image', u'(b) Kuantisasi Gray L1', u'(c) Kuantisasi Gray L2',
-        u'(d) Kuantisasi Gray L3', u'(e) Kuantisasi Gray L4',
+        "Grayscale Image",
+        "Kuantisasi Gray L1",
+        "Kuantisasi Gray L2",
+        "Kuantisasi Gray L3",
+        "Kuantisasi Gray L4",
     ]
 
     quantizedImg = [img, gray1, gray2, gray3, gray4]
 
     for j in range(len(titles)):
-        axes[i, j].imshow(quantizedImg[j], cmap = 'gray', vmin = 0, vmax = 255)
-        axes[i, j].set_title(titles[j])
-        axes[i, j].axis("off")
+        axes[i, j + 1].imshow(quantizedImg[j], cmap="gray", vmin=0, vmax=255)
+        axes[i, j + 1].set_title(titles[j])
+        axes[i, j + 1].axis("off")
 
 # Show the plot
 plt.show()
@@ -97,7 +108,7 @@ fig, axes = plt.subplots(rows, cols, figsize=(15, 5 * rows))
 for i, imgFilename in enumerate(images):
     # Membaca data Image
     img = cv2.imread(imgFilename)
-    
+
     # Get the height and width of the image
     height, width = img.shape[0], img.shape[1]
 
@@ -109,7 +120,7 @@ for i, imgFilename in enumerate(images):
     # Image quantization operation, The quantification level is 2
     for x in range(height):
         for y in range(width):
-            for z in range(3): # Correspondence BGR Three channels
+            for z in range(3):  # Correspondence BGR Three channels
                 if img[x, y][z] < 128:
                     gray = 0
                 else:
@@ -119,7 +130,7 @@ for i, imgFilename in enumerate(images):
     # Image quantization operation , The quantification level is 4
     for x in range(height):
         for y in range(width):
-            for z in range(3): # Correspondence BGR Three channels
+            for z in range(3):  # Correspondence BGR Three channels
                 if img[x, y][z] < 64:
                     gray = 0
                 elif img[x, y][z] < 128:
@@ -133,7 +144,7 @@ for i, imgFilename in enumerate(images):
     # Image quantization operation , The quantification level is 8
     for x in range(height):
         for y in range(width):
-            for z in range(3): # Correspondence BGR Three channels
+            for z in range(3):  # Correspondence BGR Three channels
                 if img[x, y][z] < 32:
                     gray = 0
                 elif img[x, y][z] < 64:
@@ -161,8 +172,10 @@ for i, imgFilename in enumerate(images):
 
     # Show the image
     titles = [
-        u'(a) Original image ', u'(b) Quantitative L2',
-        u'(c) Quantitative L4', u'(d) Quantitative L8',
+        "Original image ",
+        "Kuantisasi L2",
+        "Kuantisasi L4",
+        "Kuantisasi L8",
     ]
 
     quantizedImg = [img1, img2, img3, img4]
@@ -184,12 +197,14 @@ fig, axes = plt.subplots(rows, cols, figsize=(15, 5 * rows))
 # Loop through each image
 for i, imgFilename in enumerate(images):
     # Membaca data Image
-    img = cv2.imread(imgFilename, 0)
+    img = cv2.imread(imgFilename)
 
     # Display the original image
-    axes[i, 0].imshow(img, cmap='gray')
+    axes[i, 0].imshow(img, cmap="gray")
     axes[i, 0].set_title("Original Image")
     axes[i, 0].axis("off")
+
+    img = cv2.imread(imgFilename, 0)
 
     titles = ["Threshold", "Threshold", "Threshold Mean"]
 
@@ -201,7 +216,7 @@ for i, imgFilename in enumerate(images):
         ret, thresh = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)
 
         # Display the images
-        axes[i, j + 1].imshow(thresh, cmap='gray')
+        axes[i, j + 1].imshow(thresh, cmap="gray")
         axes[i, j + 1].set_title(f"{titles[j]}: {round(threshold, 3)}")
         axes[i, j + 1].axis("off")
 

@@ -1,0 +1,312 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Membaca data Image
+images = [
+    "img/kucing.jpg",
+    "img/gradient.png",
+    "img/Penguins.jpg",
+    "img/arizona.jpg",
+    "img/Tulips.jpg",
+    "img/Koala.jpg",
+]
+
+# Set up the subplot grid
+rows = len(images)
+cols = 4
+
+# # ==============================
+# # Brightness
+# # ==============================
+# # Create a subplot for each image
+# fig, axes = plt.subplots(rows, cols, figsize=(15, 5 * rows))
+
+# # Loop through each image
+# for i, imgFilename in enumerate(images):
+#     # Membaca data Image
+#     oriImg = cv2.imread(imgFilename)
+
+#     # Display the original image
+#     axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+#     axes[i, 0].set_title("Original Image")
+#     axes[i, 0].axis("off")
+
+#     # Membaca data Image
+#     img = cv2.imread(imgFilename, 0)
+
+#     img1 = np.abs(img - 30.0)
+#     img1 = np.uint8(img1)
+#     img2 = img + 30.0
+#     img2 = np.uint8(img2)
+
+#     titles = [
+#         "Grayscale Image",
+#         "Brightness -30",
+#         "Brightness +30",
+#     ]
+
+#     brightnesImg = [img, img1, img2]
+
+#     for j in range(len(titles)):
+#         axes[i, j + 1].imshow(brightnesImg[j], cmap="gray", vmin=0, vmax=255)
+#         axes[i, j + 1].set_title(f"{titles[j]}")
+#         axes[i, j + 1].axis("off")
+
+# # Show the plot
+# plt.show()
+
+# # ==============================
+# # Contrast
+# # ==============================
+# # Create a subplot for each image
+# fig, axes = plt.subplots(rows, 6, figsize=(15, 5 * rows))
+
+# # Loop through each image
+# for i, imgFilename in enumerate(images):
+#     # Membaca data Image
+#     oriImg = cv2.imread(imgFilename)
+
+#     # Display the original image
+#     axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+#     axes[i, 0].set_title("Original Image")
+#     axes[i, 0].axis("off")
+
+#     # Membaca data Image
+#     img = cv2.imread(imgFilename)
+
+#     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+#     img1 = imgGray * 0.5
+#     img2 = imgGray * 0.75
+#     img3 = imgGray * 1.25
+#     img4 = imgGray * 1.5
+
+#     titles = [
+#         "Contrast x0.5",
+#         "Contrast x0.75",
+#         "Original Image",
+#         "Contrast x1.25",
+#         "Contrast x1.5",
+#     ]
+
+#     contrastImg = [img1, img2, imgGray, img3, img4]
+
+#     for j in range(len(titles)):
+#         axes[i, j + 1].imshow(contrastImg[j], cmap="gray", vmin=0, vmax=255)
+#         axes[i, j + 1].set_title(f"{titles[j]}")
+#         axes[i, j + 1].axis("off")
+
+# # Show the plot
+# plt.show()
+
+# # ==============================
+# # Invers
+# # ==============================
+# # Create a subplot for each image
+# fig, axes = plt.subplots(rows, 3, figsize=(15, 5 * rows))
+
+# # Loop through each image
+# for i, imgFilename in enumerate(images):
+#     # Membaca data Image
+#     oriImg = cv2.imread(imgFilename)
+
+#     # Display the original image
+#     axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+#     axes[i, 0].set_title("Original Image")
+#     axes[i, 0].axis("off")
+
+#     # Membaca data Image
+#     img = cv2.imread(imgFilename, 0)
+
+#     img1 = 255 - img
+
+#     titles = [
+#         "Original Image",
+#         "Invers",
+#     ]
+
+#     inverseImg = [img, img1]
+
+#     for j in range(len(titles)):
+#         axes[i, j + 1].imshow(inverseImg[j], cmap="gray", vmin=0, vmax=255)
+#         axes[i, j + 1].set_title(f"{titles[j]}")
+#         axes[i, j + 1].axis("off")
+
+# # Show the plot
+# plt.show()
+
+# # ==============================
+# # Transformasi Exponensial
+# # ==============================
+# # Create a subplot for each image
+# fig, axes = plt.subplots(rows, cols, figsize=(15, 5 * rows))
+
+# # Loop through each image
+# for i, imgFilename in enumerate(images):
+#     # Membaca data Image
+#     oriImg = cv2.imread(imgFilename)
+
+#     # Display the original image
+#     axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+#     axes[i, 0].set_title("Original Image")
+#     axes[i, 0].axis("off")
+
+#     # Membaca data Image
+#     img = cv2.imread(imgFilename, 0)
+
+#     img = img / 255
+#     img1 = 100.0 * np.exp(0.5 * img)
+#     img1 = np.uint8(img1)
+#     img2 = 50.0 * np.exp(2.0 * img)
+#     img2 = np.uint8(img2)
+
+#     titles = [
+#         "Original Image",
+#         "a = 100; b = 0.5",
+#         "a = 50; b = 2",
+#     ]
+
+#     transformasiImg = [img, img1, img2]
+
+#     for j in range(len(titles)):
+#         axes[i, j + 1].imshow(transformasiImg[j], cmap="gray")
+#         axes[i, j + 1].set_title(f"{titles[j]}")
+#         axes[i, j + 1].axis("off")
+
+# # Show the plot
+# plt.show()
+
+# # ==============================
+# # Logaritmik
+# # ==============================
+# # Create a subplot for each image
+# fig, axes = plt.subplots(rows, cols, figsize=(15, 5 * rows))
+
+# # Loop through each image
+# for i, imgFilename in enumerate(images):
+#     # Membaca data Image
+#     oriImg = cv2.imread(imgFilename)
+
+#     # Display the original image
+#     axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+#     axes[i, 0].set_title("Original Image")
+#     axes[i, 0].axis("off")
+
+#     # Membaca data Image
+#     img = cv2.imread(imgFilename, 0)
+
+#     epsilon = 1e-10  # Small constant to avoid division by zero
+
+#     img1 = 40 * np.log(0.5 * (img + epsilon))
+#     img1 = np.uint8(img1)
+#     img2 = 40.0 * np.log(2.0 * (img + epsilon))
+#     img2 = np.uint8(img2)
+
+#     titles = [
+#         "Original Image",
+#         "a = 40; b = 0.5",
+#         "a = 40; b = 2",
+#     ]
+
+#     transformasiImg = [img, img1, img2]
+
+#     for j in range(len(titles)):
+#         axes[i, j + 1].imshow(transformasiImg[j], cmap="gray")
+#         axes[i, j + 1].set_title(f"{titles[j]}")
+#         axes[i, j + 1].axis("off")
+
+# # Show the plot
+# plt.show()
+
+# ==============================
+# 2. Apa perbedaan antara brightness dan contrast?
+#       Brightness (Kecerahan): Merujuk pada keseluruhan kecerahan atau kegelapan suatu gambar.
+#                               Meningkatkan kecerahan membuat gambar secara menjadi lebih terang,
+#                               sementara mengurangi kecerahan membuatnya menjadi lebih gelap.
+#       Contrast (Kontras): Merujuk pada perbedaan intensitas antara bagian tergelap dan tercerah
+#                           dari suatu gambar. Meningkatkan kontras membuat area terang menjadi
+#                           lebih terang dan area gelap menjadi lebih gelap, sementara mengurangi
+#                           kontras mengurangi perbedaan ini.
+# ==============================
+
+# # ==============================
+# # Nomor 3
+# # ==============================
+# # Create a subplot for each image
+# fig, axes = plt.subplots(rows, 5, figsize=(15, 5 * rows))
+
+# # Loop through each image
+# for i, imgFilename in enumerate(images):
+#     # Membaca data Image
+#     oriImg = cv2.imread(imgFilename)
+
+#     # Display the original image
+#     axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+#     axes[i, 0].set_title("Original Image")
+#     axes[i, 0].axis("off")
+
+#     # Membaca data Image
+#     img = cv2.imread(imgFilename, 0)
+
+#     img1 = np.abs(img - 30.0)
+#     img1 = np.uint8(img1)
+#     img2 = img + 30.0
+#     img2 = np.uint8(img2)
+#     imgBright = img + 255.0
+#     imgBright = np.clip(imgBright, 0, 255)  # Ensure values are within 0-255
+#     imgBright = np.uint8(imgBright)
+
+#     titles = [
+#         "Grayscale Image",
+#         "Brightness -30",
+#         "Brightness +30",
+#         "Brightness +255",
+#     ]
+
+#     brightnesImg = [img, img1, img2, imgBright]
+
+#     for j in range(len(titles)):
+#         axes[i, j + 1].imshow(brightnesImg[j], cmap="gray", vmin=0, vmax=255)
+#         axes[i, j + 1].set_title(f"{titles[j]}")
+#         axes[i, j + 1].axis("off")
+
+# # Show the plot
+# plt.show()
+
+# ==============================
+# Nomor 4
+# ==============================
+# Create a subplot for each image
+fig, axes = plt.subplots(rows, 5, figsize=(15, 5 * rows))
+
+# Loop through each image
+for i, imgFilename in enumerate(images):
+    # Membaca data Image
+    img = cv2.imread(imgFilename, 0)
+
+    # Normalisasi piksel gambar ke rentang [0,1]
+    imgNormalized = img / 255.0
+
+    # Lakukan transformasi power dengan beberapa nilai gamma
+    gammaValues = [0.5, 1.0, 1.5, 2.0]
+    powertransformedImages = [np.power(imgNormalized, gamma) for gamma in gammaValues]
+
+    # Konversi kembali gambar ke rentang piksel [0,255]
+    powertransformedImages = [np.uint8(img * 255) for img in powertransformedImages]
+
+    # Tampilkan gambar asli dan gambar yang telah ditransformasi
+    titles = ["Original Image"] + [f"Gamma = {gamma}" for gamma in gammaValues]
+    imagesToShow = [img] + powertransformedImages
+
+    for j in range(len(titles)):
+        axes[i, j].imshow(imagesToShow[j], cmap="gray", vmin=0, vmax=255)
+        axes[i, j].set_title(f"{titles[j]}")
+        axes[i, j].axis("off")
+
+# Show the plot
+plt.show()
+
+# Wait for the display
+cv2.waitKey(0)
+cv2.destroyAllWindows()

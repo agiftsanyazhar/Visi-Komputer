@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 
 # Membaca data Image
 images = [
-    "Praktikum 03 dan 04/img/kucing.jpg", 
-    "Praktikum 03 dan 04/img/gradient.png", 
-    "Praktikum 03 dan 04/img/Penguins.jpg", 
-    "Praktikum 03 dan 04/img/arizona.jpg", 
-    "Praktikum 03 dan 04/img/Tulips.jpg", 
+    "Praktikum 03 dan 04/img/kucing.jpg",
+    "Praktikum 03 dan 04/img/gradient.png",
+    "Praktikum 03 dan 04/img/Penguins.jpg",
+    "Praktikum 03 dan 04/img/arizona.jpg",
+    "Praktikum 03 dan 04/img/Tulips.jpg",
     "Praktikum 03 dan 04/img/Koala.jpg",
 ]
 
@@ -29,7 +29,7 @@ for i, imgFilename in enumerate(images):
 
     # Extract RGB, B, G, R layers
     rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    
+
     b = img.copy()
     b[:, :, 1] = 0
     b[:, :, 2] = 0
@@ -49,11 +49,16 @@ for i, imgFilename in enumerate(images):
         "R-RGB",
     ]
 
-    layeredImages = [img, b, g, r]
+    layeredImages = [
+        img,
+        b,
+        g,
+        r,
+    ]
 
     for j in range(len(titles)):
         axes[i, j].imshow(cv2.cvtColor(layeredImages[j], cv2.COLOR_BGR2RGB))
-        axes[i, j].set_title(f"Image {j + 1} ({titles[j]})")
+        axes[i, j].set_title(f"{titles[j]}")
         axes[i, j].axis("off")
 
 # Show the plot
@@ -82,7 +87,7 @@ for i, imgFilename in enumerate(images):
 
     for j in range(len(titles)):
         axes[i, j].imshow(cv2.cvtColor(grayscaledImages[j], cv2.COLOR_BGR2RGB))
-        axes[i, j].set_title(f"Image {j + 1} ({titles[j]})")
+        axes[i, j].set_title(f"{titles[j]}")
         axes[i, j].axis("off")
 
 # Show the plot
@@ -118,7 +123,7 @@ for i, imgFilename in enumerate(images):
 
     for j in range(len(titles)):
         axes[i, j].imshow(cv2.cvtColor(illuminatedImages[j], cv2.COLOR_BGR2RGB))
-        axes[i, j].set_title(f"Image {j + 1} ({titles[j]})")
+        axes[i, j].set_title(f"{titles[j]}")
         axes[i, j].axis("off")
 
 # Show the plot
@@ -127,10 +132,17 @@ plt.show()
 # ==============================
 # Citra Binary dengan Parameter Threshold
 # ==============================
-fig, axes = plt.subplots(rows, 6, figsize=(15, 5 * rows))
+fig, axes = plt.subplots(rows, 7, figsize=(15, 5 * rows))
 
 for i, imgFilename in enumerate(images):
     # Membaca data Image
+    oriImg = cv2.imread(imgFilename)
+
+    # Display the original image
+    axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+    axes[i, 0].set_title("Original Image")
+    axes[i, 0].axis("off")
+
     img = cv2.imread(imgFilename, 0)
 
     ret, thresh1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
@@ -140,7 +152,7 @@ for i, imgFilename in enumerate(images):
     ret, thresh5 = cv2.threshold(img, 127, 255, cv2.THRESH_TOZERO_INV)
 
     titles = [
-        "Original Image",
+        "Grayscale Image",
         "BINARY",
         "BINARY_INV",
         "TRUNC",
@@ -151,9 +163,9 @@ for i, imgFilename in enumerate(images):
     thresholded_images = [img, thresh1, thresh2, thresh3, thresh4, thresh5]
 
     for j in range(len(titles)):
-        axes[i, j].imshow(cv2.cvtColor(thresholded_images[j], cv2.COLOR_BGR2RGB))
-        axes[i, j].set_title(titles[j])
-        axes[i, j].axis("off")
+        axes[i, j + 1].imshow(cv2.cvtColor(thresholded_images[j], cv2.COLOR_BGR2RGB))
+        axes[i, j + 1].set_title(titles[j])
+        axes[i, j + 1].axis("off")
 
 # Show the plot
 plt.show()
@@ -194,28 +206,42 @@ plt.show()
 # ==============================
 # Nomor 4
 # ==============================
-fig, axes = plt.subplots(rows, cols, figsize=(15, 5 * rows))
+fig, axes = plt.subplots(rows, 5, figsize=(15, 5 * rows))
 
 for i, imgFilename in enumerate(images):
+    # Membaca data Image
+    oriImg = cv2.imread(imgFilename)
+
+    # Display the original image
+    axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+    axes[i, 0].set_title("Original Image")
+    axes[i, 0].axis("off")
+
     # Membaca data Image
     img = cv2.imread(imgFilename, cv2.IMREAD_GRAYSCALE)
 
     imgBlur = cv2.medianBlur(img, 5)
 
     ret, th1 = cv2.threshold(imgBlur, 127, 255, cv2.THRESH_BINARY)
-    th2 = cv2.adaptiveThreshold(imgBlur, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 2)
-    th3 = cv2.adaptiveThreshold(imgBlur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+    th2 = cv2.adaptiveThreshold(
+        imgBlur, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 2
+    )
+    th3 = cv2.adaptiveThreshold(
+        imgBlur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2
+    )
 
     titles = [
-        'Original Image', 'Global Thresholding (v = 127)',
-        'Adaptive Mean Thresholding', 'Adaptive Gaussian Thresholding',
+        "Grayscale Image",
+        "Global Thresholding (v = 127)",
+        "Adaptive Mean Thresholding",
+        "Adaptive Gaussian Thresholding",
     ]
     images = [img, th1, th2, th3]
 
     for j in range(len(titles)):
-        axes[i, j].imshow(images[j], 'gray')
-        axes[i, j].set_title(titles[j])
-        axes[i, j].axis("off")
+        axes[i, j + 1].imshow(images[j], "gray")
+        axes[i, j + 1].set_title(titles[j])
+        axes[i, j + 1].axis("off")
 
 # Show the plot
 plt.show()
