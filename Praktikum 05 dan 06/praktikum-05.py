@@ -405,6 +405,84 @@ for i, imgFilename in enumerate(images):
 # Show the plot
 plt.show()
 
+# ==============================
+# Nomor 8
+# ==============================
+# Create a subplot for each image
+fig, axes = plt.subplots(rows, 8, figsize=(15, 5 * rows))
+
+# Loop through each image
+for i, imgFilename in enumerate(images):
+    # Membaca data Image
+    oriImg = cv2.imread(imgFilename)
+
+    # Display the original image
+    axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+    axes[i, 0].set_title("Original Image")
+    axes[i, 0].axis("off")
+
+    # Membaca data Image
+    img = cv2.imread(imgFilename, 0)
+
+    epsilon = 1e-10  # Small constant to avoid division by zero
+
+    img1 = 40 * np.log(0.5 * (img + epsilon))
+    img1 = np.uint8(img1)
+    img2 = 40.0 * np.log(2.0 * (img + epsilon))
+    img2 = np.uint8(img2)
+
+    # Invers Log
+    invers_log_img1 = np.exp(img1 / 40.0) - epsilon
+    invers_log_img2 = np.exp(img2 / 40.0) - epsilon
+
+    # Konversi ke rentang piksel [0, 255]
+    invers_log_img1 = (invers_log_img1 / np.max(invers_log_img1)) * 255.0
+    invers_log_img2 = (invers_log_img2 / np.max(invers_log_img2)) * 255.0
+
+    # Ubah tipe data ke uint8
+    invers_log_img1 = np.uint8(invers_log_img1)
+    invers_log_img2 = np.uint8(invers_log_img2)
+
+    # Root
+    root_img1 = np.power(img1 / 40.0, 2.5)
+    root_img2 = np.power(img2 / 40.0, 0.5)
+
+    # Konversi ke rentang piksel [0, 255]
+    root_img1 = (root_img1 / np.max(root_img1)) * 255.0
+    root_img2 = (root_img2 / np.max(root_img2)) * 255.0
+
+    # Ubah tipe data ke uint8
+    root_img1 = np.uint8(root_img1)
+    root_img2 = np.uint8(root_img2)
+
+    titles = [
+        "Original Image",
+        "a = 40; b = 0.5",
+        "a = 40; b = 2",
+        "Invers Log 1",
+        "Invers Log 2",
+        "Root Img 1",
+        "Root Img 2",
+    ]
+
+    transformasiImg = [
+        img,
+        img1,
+        img2,
+        invers_log_img1,
+        invers_log_img2,
+        root_img1,
+        root_img2,
+    ]
+
+    for j in range(len(titles)):
+        axes[i, j + 1].imshow(transformasiImg[j], cmap="gray")
+        axes[i, j + 1].set_title(f"{titles[j]}")
+        axes[i, j + 1].axis("off")
+
+# Show the plot
+plt.show()
+
 # Wait for the display
 cv2.waitKey(0)
 cv2.destroyAllWindows()
