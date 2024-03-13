@@ -431,7 +431,9 @@ for i, imgFilename in enumerate(images):
     img2 = 40.0 * np.log(2.0 * (img + epsilon))
     img2 = np.uint8(img2)
 
+    # ==============================
     # Invers Log
+    # ==============================
     invers_log_img1 = np.exp(img1 / 40.0) - epsilon
     invers_log_img2 = np.exp(img2 / 40.0) - epsilon
 
@@ -443,7 +445,9 @@ for i, imgFilename in enumerate(images):
     invers_log_img1 = np.uint8(invers_log_img1)
     invers_log_img2 = np.uint8(invers_log_img2)
 
+    # ==============================
     # Root
+    # ==============================
     root_img1 = np.power(img1 / 40.0, 2.5)
     root_img2 = np.power(img2 / 40.0, 0.5)
 
