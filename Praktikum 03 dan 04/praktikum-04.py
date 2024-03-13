@@ -101,7 +101,7 @@ for i, imgFilename in enumerate(images):
 plt.show()
 
 # ==============================
-# Level 2,4, dan 8
+# Level 2, 4, dan 8
 # ==============================
 fig, axes = plt.subplots(rows, cols, figsize=(15, 5 * rows))
 
