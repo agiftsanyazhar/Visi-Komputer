@@ -114,6 +114,48 @@ for i, imgFilename in enumerate(images):
 plt.show()
 
 # ==============================
+# Histogram Invers
+# ==============================
+# Create a subplot for each image
+fig, axes = plt.subplots(rows, 5, figsize=(15, 5 * rows))
+
+# Loop through each image
+for i, imgFilename in enumerate(images):
+    # Membaca data Image
+    oriImg = cv2.imread(imgFilename)
+
+    # Display the original image
+    axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+    axes[i, 0].set_title("Original Image")
+    axes[i, 0].axis("off")
+
+    # Membaca data Image
+    img = cv2.imread(imgFilename, 0)
+
+    img1 = 255 - img
+
+    titles = [
+        "Grayscale Image",
+        "Invers",
+    ]
+
+    inverseImg = [img, img1]
+
+    for j in range(len(titles)):
+        axes[i, 2 * j + 1].imshow(inverseImg[j], cmap="gray", vmin=0, vmax=255)
+        axes[i, 2 * j + 1].set_title(f"{titles[j]}")
+        axes[i, 2 * j + 1].axis("off")
+
+        # Calculate and display the histogram
+        hist = cv2.calcHist([inverseImg[j]], [0], None, [256], [0, 256])
+        axes[i, 2 * j + 2].plot(hist)
+        axes[i, 2 * j + 2].set_title("Histogram")
+        axes[i, 2 * j + 2].set_xlim([0, 256])
+
+# Show the plot
+plt.show()
+
+# ==============================
 # Auto Level Gray Scale
 # ==============================
 # Create a subplot for each image
@@ -161,7 +203,7 @@ for i, imgFilename in enumerate(images):
 plt.show()
 
 # ==============================
-# Auto Level Gray Scale
+# Auto Level pada Citra BGR
 # ==============================
 # Create a subplot for each image
 fig, axes = plt.subplots(rows, 2, figsize=(15, 5 * rows))

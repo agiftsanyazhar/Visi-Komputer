@@ -42,12 +42,12 @@ for i, imgFilename in enumerate(images):
     img2 = np.uint8(img2)
 
     titles = [
-        "Grayscale Image",
         "Brightness -30",
+        "Grayscale Image",
         "Brightness +30",
     ]
 
-    brightnesImg = [img, img1, img2]
+    brightnesImg = [img1, img, img2]
 
     for j in range(len(titles)):
         axes[i, j + 1].imshow(brightnesImg[j], cmap="gray", vmin=0, vmax=255)
