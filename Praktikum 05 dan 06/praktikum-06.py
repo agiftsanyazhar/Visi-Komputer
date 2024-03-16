@@ -12,6 +12,7 @@ images = [
     "img/Koala.jpg",
     "img/pngtree-room-with-wood-floors-and-black-walls-from-a-3d-rendering-image_2611554.jpg",
     "img/underwater.jpg",
+    "img/underwater-view.jpg",
 ]
 
 # Set up the subplot grid
@@ -153,6 +154,51 @@ for i, imgFilename in enumerate(images):
 
     for j in range(len(titles)):
         axes[i, j + 1].imshow(enhancedImg[j], cmap="gray", vmin=0, vmax=255)
+        axes[i, j + 1].set_title(f"{titles[j]}")
+        axes[i, j + 1].axis("off")
+
+# Show the plot
+plt.show()
+
+# ==============================
+# Auto Level Gray Scale
+# ==============================
+# Create a subplot for each image
+fig, axes = plt.subplots(rows, 2, figsize=(15, 5 * rows))
+
+# Loop through each image
+for i, imgFilename in enumerate(images):
+    # Membaca data Image
+    oriImg = cv2.imread(imgFilename)
+
+    # Display the original image
+    axes[i, 0].imshow(cv2.cvtColor(oriImg, cv2.COLOR_BGR2RGB))
+    axes[i, 0].set_title("Original Image")
+    axes[i, 0].axis("off")
+
+    # Membaca data Image
+    img = cv2.imread(imgFilename)
+
+    # Auto Level pada setiap layer (B, G, R)
+    # Pisahkan layer B, G, dan R
+    b, g, r = cv2.split(img)
+
+    # Lakukan autolevel pada setiap layer
+    b_eq = cv2.equalizeHist(b)
+    g_eq = cv2.equalizeHist(g)
+    r_eq = cv2.equalizeHist(r)
+
+    # Gabungkan kembali layer B, G, dan R
+    img_eq = cv2.merge([b_eq, g_eq, r_eq])
+
+    titles = [
+        "Auto Level BGR",
+    ]
+
+    autoLevelImg = [img_eq]
+
+    for j in range(len(titles)):
+        axes[i, j + 1].imshow(cv2.cvtColor(autoLevelImg[j], cv2.COLOR_BGR2RGB))
         axes[i, j + 1].set_title(f"{titles[j]}")
         axes[i, j + 1].axis("off")
 

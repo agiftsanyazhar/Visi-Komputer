@@ -200,7 +200,7 @@ for i, imgFilename in enumerate(images):
     img = cv2.imread(imgFilename)
 
     # Display the original image
-    axes[i, 0].imshow(img, cmap="gray")
+    axes[i, 0].imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
     axes[i, 0].set_title("Original Image")
     axes[i, 0].axis("off")
 
