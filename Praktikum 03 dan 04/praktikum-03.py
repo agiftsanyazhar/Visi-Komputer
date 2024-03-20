@@ -62,6 +62,7 @@ for i, imgFilename in enumerate(images):
         axes[i, j].axis("off")
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -91,6 +92,7 @@ for i, imgFilename in enumerate(images):
         axes[i, j].axis("off")
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -127,6 +129,7 @@ for i, imgFilename in enumerate(images):
         axes[i, j].axis("off")
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -168,6 +171,7 @@ for i, imgFilename in enumerate(images):
         axes[i, j + 1].axis("off")
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -201,6 +205,7 @@ for i, imgFilename in enumerate(images):
         axes[i, j].axis("off")
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -244,6 +249,7 @@ for i, imgFilename in enumerate(images):
         axes[i, j + 1].axis("off")
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 cv2.waitKey(0)

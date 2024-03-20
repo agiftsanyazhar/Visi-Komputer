@@ -64,6 +64,7 @@ for i, imgFilename in enumerate(images):
         axes[i, 2 * j + 2].set_xlim([0, 256])
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -111,6 +112,7 @@ for i, imgFilename in enumerate(images):
         axes[i, 2 * j + 2].set_xlim([0, 256])
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -153,6 +155,7 @@ for i, imgFilename in enumerate(images):
         axes[i, 2 * j + 2].set_xlim([0, 256])
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -200,6 +203,7 @@ for i, imgFilename in enumerate(images):
         axes[i, j + 1].axis("off")
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -245,6 +249,7 @@ for i, imgFilename in enumerate(images):
         axes[i, j + 1].axis("off")
 
 # Show the plot
+plt.tight_layout()
 plt.show()
 
 # Wait for the display

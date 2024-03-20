@@ -79,6 +79,7 @@ axes[2].set_title("Flip Vertical")
 axes[3].imshow(cv2.cvtColor(imgFlipBoth, cv2.COLOR_BGR2RGB))
 axes[3].set_title("Flip Horizontal and Vertical")
 
+plt.tight_layout()
 plt.show()
 
 # ==============================
@@ -115,6 +116,7 @@ axes[2].set_title("Rotated Counterclockwise 90 Degrees")
 axes[3].imshow(cv2.cvtColor(imgRotatedCustom, cv2.COLOR_BGR2RGB))
 axes[3].set_title("Custom Rotated 45 Degrees")
 
+plt.tight_layout()
 plt.show()
 
 cv2.waitKey(0)
