@@ -1,0 +1,7 @@
+tensorflow==2.8.0
+tensorflow-gpu==2.8.0
+streamlit
+matplotlib
+numpy
+pandas
+protobuf==3.20.0
