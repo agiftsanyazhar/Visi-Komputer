@@ -50,7 +50,7 @@ data_cat = [
 img_height = 180
 img_width = 180
 
-st.title("Vegetable/Fruit Image Classification")
+st.title("Fruit/Vegetable Image Classification")
 
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
@@ -73,8 +73,8 @@ if uploaded_file is not None:
     score = tf.nn.softmax(predict)
 
     st.write(
-        "Vegetable/Fruit in image is {} with an accuracy of {:.2f}%".format(
-            data_cat[np.argmax(score)], np.max(score) * 100
+        "Fruit/Vegetable in image is **{}** with an accuracy of **{:.2f}%**".format(
+            data_cat[np.argmax(score)].upper(), np.max(score) * 100
         )
     )
 else:
